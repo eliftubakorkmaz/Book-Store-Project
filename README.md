@@ -25,3 +25,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+-----------------------------------------------------------------------
+Angular, .Net ve MsSql kullanılarak hazırlanmış full stack bir book store projesidir.
+
+Bu projede:
+
+-> Güvenli Ödeme İşlemleri: Ödeme işlemleri 'İyzico Kütüphanesi' kullanılarak kolaylaştırmıştır. Kullanıcı ve ödeme bilgileri sunucuya güvenli bir şekilde iletilerek başarılı bir ödeme süreci amaçlanmıştır. -> ingilizce ve Türkçe olmak üzere dil desteği konulmuştur.
