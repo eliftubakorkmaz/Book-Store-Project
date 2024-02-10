@@ -31,7 +31,7 @@ export class ShoppingCartService {
 
   changeBookQuantityInShoppingCart(bookId: number, quantity: number){
     if(localStorage.getItem("response")){
-      this.http.get(`http://localhost:7082/api/ShoppingCarts/ChangeBookQuantityInShoppingCart/${bookId}/${quantity}`)
+      this.http.get(`http://localhost:5051/api/ShoppingCarts/ChangeBookQuantityInShoppingCart/${bookId}/${quantity}`)
       .subscribe({
         next: (res:any)=> {
           this.getAllShoppingCarts();
@@ -45,7 +45,7 @@ export class ShoppingCartService {
         const index = this.shoppingCarts.findIndex(p=> p.id == bookId);
         this.removeByIndex(index);
       }else{
-        this.http.get(`http://localhost:7082/api/ShoppingCarts/CheckBookQuantityIsAvailable/${bookId}/${quantity}`).subscribe({
+        this.http.get(`http://localhost:5051/api/ShoppingCarts/CheckBookQuantityIsAvailable/${bookId}/${quantity}`).subscribe({
           next: (res:any)=> {
             this.shoppingCarts.filter(p=> p.id === bookId)[0].quantity = quantity;
           },
@@ -71,7 +71,7 @@ export class ShoppingCartService {
     }
 
     if(localStorage.getItem("response")){
-      this.http.get<SetShoppingCartsModel[]>("http://localhost:7082/api/ShoppingCarts/GetAll/" + this.auth.userId,).subscribe({
+      this.http.get<SetShoppingCartsModel[]>("http://localhost:5051/api/ShoppingCarts/GetAll/" + this.auth.userId,).subscribe({
         next: (res: any)=> {
           this.shoppingCarts =  res
         this.calcTotal();
@@ -118,7 +118,7 @@ export class ShoppingCartService {
     }).subscribe(res => {
       this.swal.callSwal(res.doYouWantToDeleted, res.cancelBtn, res.confirmBtn, () => {
         if(localStorage.getItem("response")){
-          this.http.get("http://localhost:7082/api/ShoppingCarts/RemoveById/" + this.shoppingCarts[index]?.shoppingCartId).subscribe(res=> {
+          this.http.get("http://localhost:5051/api/ShoppingCarts/RemoveById/" + this.shoppingCarts[index]?.shoppingCartId).subscribe(res=> {
 
             this.getAllShoppingCarts();
           });
@@ -135,7 +135,7 @@ export class ShoppingCartService {
   }
 
   payment(data:PaymentModel, callBack: (res: any)=> void){
-    this.http.post("http://localhost:7082/api/ShoppingCarts/Payment", data)
+    this.http.post("http://localhost:5051/api/ShoppingCarts/Payment", data)
     .subscribe({
       next: (res:any)=> { 
         callBack(res);
